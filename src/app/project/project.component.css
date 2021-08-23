@@ -1,0 +1,30 @@
+.container {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table_header,
+.row {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+}
+
+.table_header_number,
+.table_item_number,
+.arrow_down {
+  width: 5%;
+}
+
+.table_header_item,
+.table_item {
+  width: 15%;
+}
+
+.arrow_down {
+  display: flex;
+  justify-content: center;
+}
+
+.arrow_down_rotate {
+  transform: rotate(180deg);
+}

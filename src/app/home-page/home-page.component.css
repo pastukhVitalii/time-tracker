@@ -1,0 +1,27 @@
+.project_table {
+  width: 90%;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+
+.table_header {
+  font-weight: bold;
+  font-size: 17px;
+  text-transform: capitalize;
+}
+
+.table_header {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+}
+
+.table_header div {
+  width: 15%;
+}
+
+.table_header span {
+  width: 5%;
+}

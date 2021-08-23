@@ -1,0 +1,15 @@
+<div>
+  <div class="container">
+    <div class="row">
+      <div class="arrow_down" [ngClass]="{'arrow_down_rotate' : isShowTasks}" (click)="showTasks()">&#8659;</div>
+      <div class="table_item_number">1</div>
+      <div class="table_item">{{ project?.title }}</div>
+      <div class="table_item">{{ project?.addedDate }}</div>
+      <div class="table_item">{{ project?.lastUpdate }}</div>
+      <div class="table_item">{{ project?.workers }}</div>
+    </div>
+    <div *ngIf="isShowTasks">
+      <app-tasks></app-tasks>
+    </div>
+  </div>
+</div>

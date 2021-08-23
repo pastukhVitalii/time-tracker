@@ -1,0 +1,18 @@
+<div class="task_table">
+  <h2>Tasks</h2>
+  <div class="task_table_header">
+    <div>№</div>
+    <div>task name</div>
+    <div>duration</div>
+    <div>last update</div>
+  </div>
+
+  <div *ngFor="let t of tasks; index as i">
+    <div class="row">
+      <div>{{ i + 0}}</div>
+      <div>{{ t.title}}</div>
+      <div>{{ t.duration}}</div>
+      <div>{{ t.lastUpdate}}</div>
+    </div>
+  </div>
+</div>

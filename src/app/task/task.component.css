@@ -1,0 +1,27 @@
+.task_table {
+  margin: 20px 40px;
+  padding-right: 20px;
+}
+
+.task_table_header {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  font-size: 17px;
+  text-transform: capitalize;
+}
+
+.task_table_header div {
+  width: 15%;
+}
+
+.row div {
+  width: 15%;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
