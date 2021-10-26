@@ -18,5 +18,8 @@ export class RegisterService {
   register(data: IUserReq): Observable<IUserRes> {
     return this.http.post<IUserRes>(`${environment.baseUrl}admins/new`, data)
   }
+  login(data: IUserReq): Observable<IUserRes> {
+    return this.http.post<IUserRes>(`${environment.baseUrl}admins/login`, data)
+  }
 
 }

@@ -12,6 +12,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
     TaskComponent,
     RegisterPageComponent,
     PageNotFoundComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,

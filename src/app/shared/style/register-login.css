@@ -1,0 +1,68 @@
+.register_form {
+  width: 65%;
+  background-color: #5847eb;
+  border-radius: 20px;
+  margin: 150px auto;
+  padding: 32px;
+  text-align: center;
+}
+
+.signup {
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+input {
+  height: 64px;
+  min-width: 350px;
+  border: none;
+  border-radius: 4px;
+  margin: 12px 0;
+  padding: 0 12px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+input:last-child {
+  margin-bottom: 24px;
+}
+
+button {
+  height: 64px;
+  min-width: 350px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  background-color: #7536d3;
+  color: #ffffff;
+  margin: 12px 0 24px;
+}
+
+button:hover {
+  border: 1px solid #ffffff;
+  cursor: pointer;
+}
+
+.disable_button {
+  opacity: 0.6;
+}
+
+.disable_button:hover {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-control-error {
+  border: 2px solid crimson;
+}
+
+.error-message {
+  color: tomato;
+  margin: 4px 0;
+}
+
+.subtext,
+a:visited {
+  color: #ffffff;
+  opacity: 0.7;
+}

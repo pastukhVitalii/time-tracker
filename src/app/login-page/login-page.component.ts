@@ -1,20 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {RegisterService} from "../shared/services/register.service";
-import {IUserRes} from "../../data";
 import {Router} from "@angular/router";
-import {Subscription} from "rxjs";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {IUserRes} from "../../data";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register-page.component.html',
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
   styleUrls: ['../shared/style/register-login.css']
 })
+export class LoginPageComponent {
 
-export class RegisterPageComponent implements OnInit {
-
-  admins: IUserRes | undefined
   errorMessage: string = ""
 
   subscriptions: Subscription = new Subscription();
@@ -26,17 +24,7 @@ export class RegisterPageComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    this.registerService.getAdmins()
-      .subscribe((res: any) => {
-          this.admins = res;
-          console.log("-> this.admins", this.admins);
-
-        }
-      );
-  }
-
-  registerForm = new FormGroup({
+  loginForm = new FormGroup({
     email: new FormControl('', [
       Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,8}$')
     ]),
@@ -44,12 +32,14 @@ export class RegisterPageComponent implements OnInit {
   });
 
   onSubmit() {
-    this.registerService.register(this.registerForm.value)
+    console.log("-> sub");
+    this.registerService.login(this.loginForm.value)
       .subscribe((res: IUserRes) => {
-          if (res.id) {
+        console.log("-> res", res);
+          if (res) {
             this.router.navigate(['/']);
-            this.registerForm.reset()
-          } else console.log(res)
+            this.loginForm.reset()
+          }
         },
         (err) => {
           this.errorMessage = err.error.text

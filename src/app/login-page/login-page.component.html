@@ -1,0 +1,33 @@
+<div class="register_form">
+  <h3 class="signup">Sign In</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div>
+      <input id="email" type="text" formControlName="email" placeholder="Email"
+             [ngClass]="{'form-control-error': loginForm?.get('email')?.touched && loginForm?.get('email')?.invalid}">
+      <div *ngIf="loginForm?.get('email')?.invalid &&  loginForm?.get('email')?.touched">
+        <p class="error-message" *ngIf="loginForm?.get('email')?.invalid">Email is required</p>
+        <p class="error-message" *ngIf="loginForm!.get('email')!.dirty">Enter a valid email</p>
+      </div>
+    </div>
+
+    <div>
+      <input id="password" type="text" formControlName="password" placeholder="Password"
+             [ngClass]="{'form-control-error': loginForm?.get('password')?.touched && loginForm?.get('password')?.invalid}">
+      <p class="error-message"
+         *ngIf="loginForm?.get('password')?.invalid &&  loginForm?.get('password')?.touched">
+        Password is required
+      </p>
+      <p class="error-message"
+         *ngIf="loginForm?.get('password')?.errors?.minlength">
+        Min length is 2
+      </p>
+    </div>
+
+    <p>Complete the form to enable button.</p>
+    <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+    <button type="submit" [disabled]="!loginForm.valid" [ngClass]="{'disable_button': !loginForm.valid}">Submit
+    </button>
+    <p class="subtext">Don't have an account? <a routerLink="/register">Register</a></p>
+  </form>
+</div>

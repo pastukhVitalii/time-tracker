@@ -20,7 +20,6 @@ export interface IUserRes {
 }
 
 export interface IUserReq {
-  id: string
   email: string
   password: string
 }
