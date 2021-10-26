@@ -1,12 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { TestComponent } from '../test/test.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { HeaderComponent } from './header/header.component';
-import { ProjectComponent } from './project/project.component';
-import { TaskComponent } from './task/task.component';
+import {AppComponent} from './app.component';
+import {TestComponent} from '../test/test.component';
+import {HomePageComponent} from './home-page/home-page.component';
+import {HeaderComponent} from './header/header.component';
+import {ProjectComponent} from './project/project.component';
+import {TaskComponent} from './task/task.component';
+import {RegisterPageComponent} from './register-page/register-page.component';
+import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {AppRoutingModule} from './app-routing.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -15,12 +20,19 @@ import { TaskComponent } from './task/task.component';
     HomePageComponent,
     HeaderComponent,
     ProjectComponent,
-    TaskComponent
+    TaskComponent,
+    RegisterPageComponent,
+    PageNotFoundComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

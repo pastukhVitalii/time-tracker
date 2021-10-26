@@ -1,0 +1,19 @@
+.not-found__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  color: tomato;
+}
+
+.not-found__title {
+  font-size: 200px;
+  margin: 0;
+}
+
+.not-found__subtitle {
+  font-size: 100px;
+  margin: 0;
+  text-transform: uppercase;
+}

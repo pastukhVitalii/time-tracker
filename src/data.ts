@@ -13,6 +13,18 @@ export interface IProject {
   workers?: Array<string>
 }
 
+export interface IUserRes {
+  id: string
+  email: string
+  password: string
+}
+
+export interface IUserReq {
+  id: string
+  email: string
+  password: string
+}
+
 export const projects: Array<IProject> = [
   {
     id: '1',
@@ -45,3 +57,4 @@ export const tasks: Array<ITask> = [
     lastUpdate: '11/09/21',
   }
 ]
+
