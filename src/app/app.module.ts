@@ -11,8 +11,9 @@ import {RegisterPageComponent} from './register-page/register-page.component';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LoginPageComponent } from './login-page/login-page.component';
+import {UniversalAppInterceptor} from "./shared/services/appInterceptor";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: UniversalAppInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

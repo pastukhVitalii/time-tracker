@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {RegisterService} from "../shared/services/register.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {IUserRes} from "../../data";
+import {AuthService} from "../shared/services/auth.service";
+import {LocalStorageService} from "../shared/services/localStorage.service";
 
 @Component({
   selector: 'app-login-page',
@@ -19,8 +20,9 @@ export class LoginPageComponent {
 
   constructor(
     private http: HttpClient,
-    private registerService: RegisterService,
-    private router: Router
+    private registerService: AuthService,
+    private localStorageService: LocalStorageService,
+    private router: Router,
   ) {
   }
 
@@ -32,11 +34,10 @@ export class LoginPageComponent {
   });
 
   onSubmit() {
-    console.log("-> sub");
     this.registerService.login(this.loginForm.value)
-      .subscribe((res: IUserRes) => {
-        console.log("-> res", res);
+      .subscribe((res: any) => {
           if (res) {
+            this.localStorageService.set('t', res.token)
             this.router.navigate(['/']);
             this.loginForm.reset()
           }

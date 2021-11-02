@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {RegisterService} from "../shared/services/register.service";
+import {AuthService} from "../shared/services/auth.service";
 import {IUserRes} from "../../data";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
@@ -21,7 +21,7 @@ export class RegisterPageComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private registerService: RegisterService,
+    private registerService: AuthService,
     private router: Router
   ) {
   }

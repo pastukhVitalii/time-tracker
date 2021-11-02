@@ -7,10 +7,15 @@ export type ITask = {
 
 export interface IProject {
   id: string
-  title: string
-  addedDate: string
-  lastUpdate: string
+  title?: string
+  addedDate?: string
+  lastUpdate?: string
   workers?: Array<string>
+  projectname?: string,
+  createdate?: string,
+  updatedate?: string,
+  time?: string,
+  user_id?: string,
 }
 
 export interface IUserRes {
