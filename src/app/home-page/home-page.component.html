@@ -5,11 +5,12 @@
     <div>project name</div>
     <div>start date</div>
     <div>last update</div>
-    <div>workers</div>
+    <div>time</div>
   </div>
 
-<!--  <app-project
-    *ngFor="let project of projects"
+  <app-project
+    *ngFor="let project of projects; index as i"
     [project]="project"
-  ></app-project>-->
+    [i]="i"
+  ></app-project>
 </div>

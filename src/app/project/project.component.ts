@@ -10,8 +10,10 @@ import {IProject} from "../../data";
 export class ProjectComponent implements OnInit {
 
   isShowTasks = false;
+  projectId: string | undefined = '';
 
   @Input() project: IProject | undefined;
+  @Input() i = 1;
 
   constructor() {
   }
@@ -21,6 +23,7 @@ export class ProjectComponent implements OnInit {
 
   showTasks() {
     this.isShowTasks = !this.isShowTasks;
+    this.projectId = this.project?.id;
   }
 }
 

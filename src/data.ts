@@ -1,8 +1,11 @@
 export type ITask = {
   id: string
-  title: string
-  duration: number
-  lastUpdate: string
+  task_name: string
+  create_date: string
+  update_date: string
+  time: number
+  project_id: string
+  user_id: string
 }
 
 export interface IProject {
@@ -46,19 +49,3 @@ export const projects: Array<IProject> = [
     workers: ["Vitaliy"],
   }
 ];
-
-export const tasks: Array<ITask> = [
-  {
-    id: 't1',
-    title: 'Add style',
-    duration: 180,
-    lastUpdate: '01/09/21',
-  },
-  {
-    id: 't1',
-    title: 'refactoring',
-    duration: 70,
-    lastUpdate: '11/09/21',
-  }
-]
-

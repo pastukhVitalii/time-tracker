@@ -1,10 +1,11 @@
 .register_form {
   width: 65%;
-  background-color: #5847eb;
+  background-color: #1c1f4a;
   border-radius: 20px;
   margin: 150px auto;
   padding: 32px;
   text-align: center;
+  color: #ffffff;
 }
 
 .signup {
@@ -64,5 +65,4 @@ button:hover {
 .subtext,
 a:visited {
   color: #ffffff;
-  opacity: 0.7;
 }
