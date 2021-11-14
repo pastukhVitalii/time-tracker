@@ -14,8 +14,8 @@
       <div>{{ i + 1}}</div>
       <div>{{ t.task_name}}</div>
       <div>{{ t.time}}</div>
-      <div>{{ t.create_date}}</div>
-      <div>{{ t.update_date}}</div>
+      <div>{{ t.create_date | date : 'd/M/yy h:mm' }}</div>
+      <div>{{ t.update_date | date : 'd/M/yy h:mm'  }}</div>
       <div class="delete_button">
         <button>Delete</button>
       </div>

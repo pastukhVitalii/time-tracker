@@ -12,9 +12,9 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import { LoginPageComponent } from './login-page/login-page.component';
+import {LoginPageComponent} from './login-page/login-page.component';
 import {UniversalAppInterceptor} from "./shared/services/appInterceptor";
-import { UserCardComponent } from './user-card/user-card.component';
+import {UserCardComponent} from './user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { UserCardComponent } from './user-card/user-card.component';
     HttpClientModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: UniversalAppInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: UniversalAppInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
