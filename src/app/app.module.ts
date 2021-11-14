@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LoginPageComponent } from './login-page/login-page.component';
 import {UniversalAppInterceptor} from "./shared/services/appInterceptor";
+import { UserCardComponent } from './user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {UniversalAppInterceptor} from "./shared/services/appInterceptor";
     RegisterPageComponent,
     PageNotFoundComponent,
     LoginPageComponent,
+    UserCardComponent,
   ],
   imports: [
     BrowserModule,

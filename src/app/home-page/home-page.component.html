@@ -1,16 +1,20 @@
-<div class="project_table">
-  <div class="table_header">
-    <span class="arrow_down"></span>
-    <span class="arrow_down">№</span>
-    <div>project name</div>
-    <div>start date</div>
-    <div>last update</div>
-    <div>time</div>
-  </div>
+<div class="dashboard">
+  <app-user-card></app-user-card>
 
-  <app-project
-    *ngFor="let project of projects; index as i"
-    [project]="project"
-    [i]="i"
-  ></app-project>
+  <div class="project_table">
+    <div class="table_header">
+      <span class="arrow_down"></span>
+      <span class="arrow_down">№</span>
+      <div>project name</div>
+      <div>start date</div>
+      <div>last update</div>
+      <div>time</div>
+    </div>
+
+    <app-project
+      *ngFor="let project of projects; index as i"
+      [project]="project"
+      [i]="i"
+    ></app-project>
+  </div>
 </div>

@@ -21,5 +21,8 @@ export class AuthService {
   login(data: IUserReq): Observable<IUserRes> {
     return this.http.post<IUserRes>(`${environment.baseUrl}admins/login`, data)
   }
+  me(): Observable<IUserRes> {
+    return this.http.get<IUserRes>(`${environment.baseUrl}admins/me`)
+  }
 
 }

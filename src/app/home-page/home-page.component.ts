@@ -1,10 +1,7 @@
 import {Component} from '@angular/core';
-import {Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ProjectService} from "../shared/services/project.service";
-import {Router} from "@angular/router";
-import {IProject, IUserRes} from "../../data";
-import {LocalStorageService} from "../shared/services/localStorage.service";
+import {IProject} from "../../data";
 
 @Component({
   selector: 'app-home',
@@ -15,13 +12,9 @@ import {LocalStorageService} from "../shared/services/localStorage.service";
 export class HomePageComponent {
 
   projects: Array<IProject> | undefined;
-  subscriptions: Subscription = new Subscription();
-
   constructor(
     private http: HttpClient,
     private projectService: ProjectService,
-    private localStorageService: LocalStorageService,
-    private router: Router,
   ) {
   }
 
@@ -29,7 +22,6 @@ export class HomePageComponent {
     this.projectService.getProjects()
       .subscribe((res: Array<IProject>) => {
           this.projects = res;
-          console.log("-> this.admins", this.projects);
         }
       );
   }

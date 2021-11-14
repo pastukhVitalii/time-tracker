@@ -24,7 +24,7 @@ export interface IProject {
 export interface IUserRes {
   id: string
   email: string
-  password: string
+  password?: string
 }
 
 export interface IUserReq {
