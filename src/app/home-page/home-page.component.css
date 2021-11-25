@@ -13,6 +13,11 @@
   color: #ffffff;
 }
 
+.project_header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .table_header {
   font-weight: bold;
   font-size: 17px;

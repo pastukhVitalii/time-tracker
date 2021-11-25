@@ -2,7 +2,12 @@
   <app-user-card></app-user-card>
 
   <div class="project_table">
-    <h2>Projects</h2>
+    <div class="project_header">
+      <h2>Projects</h2>
+      <div class="addProject">
+        <button class="button" (click)="openModal('add-project-modal')">new project</button>
+      </div>
+    </div>
     <div class="table_header">
       <span class="arrow_down"></span>
       <span class="arrow_down">№</span>
@@ -17,5 +22,18 @@
       [project]="project"
       [i]="i"
     ></app-project>
+
+    <jw-modal id="add-project-modal">
+      <h3 class="title">Create new project</h3>
+      <button class="btn_close" (click)="closeModal('add-project-modal')">X</button>
+      <div class="input_block">
+        <label>Project name </label>
+        <input
+          class="input" type="text" placeholder="project name"
+          [(ngModel)]="projectName">
+      </div>
+        <button class="button" (click)="onAddProject('add-project-modal')">Add project</button>
+    </jw-modal>
+
   </div>
 </div>

@@ -9,6 +9,10 @@
   padding: 20px 0;
 }
 
+.row {
+  cursor: pointer;
+}
+
 .table_header_number,
 .table_item_number,
 .arrow_down {

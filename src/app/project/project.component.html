@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row">
-    <div class="arrow_down" [ngClass]="{'arrow_down_rotate' : isShowTasks}" (click)="showTasks()">&#8659;</div>
+  <div class="row" (click)="showTasks()">
+    <div class="arrow_down" [ngClass]="{'arrow_down_rotate' : isShowTasks}">&#8659;</div>
     <div class="table_item_number">{{ 1 + i }}</div>
     <div class="table_item">{{ project?.projectname }}</div>
     <div class="table_item">{{ project?.updatedate | date : 'd/M/yy h:mm' }}</div>

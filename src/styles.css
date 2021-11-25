@@ -9,3 +9,12 @@ body {
 * {
   margin: 0;
 }
+
+.button {
+  background-color: #56c2e6;
+  border: none;
+  color: #ffffff;
+  text-transform: capitalize;
+  padding: 0.9rem 1.5rem;
+  cursor: pointer;
+}

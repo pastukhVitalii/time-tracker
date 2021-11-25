@@ -15,6 +15,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {LoginPageComponent} from './login-page/login-page.component';
 import {UniversalAppInterceptor} from "./shared/services/appInterceptor";
 import {UserCardComponent} from './user-card/user-card.component';
+import { ModalModule } from './modal/modal.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {UserCardComponent} from './user-card/user-card.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ModalModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: UniversalAppInterceptor, multi: true},

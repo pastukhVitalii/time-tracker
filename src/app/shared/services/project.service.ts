@@ -15,4 +15,7 @@ export class ProjectService {
   getProjects(): Observable<Array<IProject>> {
     return this.http.get<Array<IProject>>(`${environment.baseUrl}projects`);
   }
+  addProject(projectName: string ): Observable<IProject> {
+    return this.http.post<IProject>(`${environment.baseUrl}projects`, {projectName})
+  }
 }
