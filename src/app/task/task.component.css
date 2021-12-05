@@ -25,11 +25,32 @@
 .row {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.delete_button {
+.btn_container {
   display: flex;
-  justify-content: center
+  justify-content: space-between;
+}
+
+.btn_icon {
+  display: flex;
+  justify-content: center;
+}
+
+.btn_icon button {
+  padding: 0;
+  cursor: pointer;
+  background-color: #56c2e6;
+  border: none;
+  width: 30px;
+  height: 30px;
+}
+
+.btn_icon img {
+  width: 30px;
+  height: 20px;
+  padding-top: 3px;
 }

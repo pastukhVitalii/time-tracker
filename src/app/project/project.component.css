@@ -1,5 +1,6 @@
 .container {
   border-bottom: 1px solid #e0e0e0;
+  position: relative;
 }
 
 .table_header,
@@ -11,6 +12,7 @@
 
 .row {
   cursor: pointer;
+  width: 100%;
 }
 
 .table_header_number,
@@ -31,4 +33,56 @@
 
 .arrow_down_rotate {
   transform: rotate(180deg);
+}
+
+.project_menu_btn {
+  position: absolute;
+  right: 80px;
+  margin-top: -38px;
+  display: flex;
+  width: 23px;
+  justify-content: space-between;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition-duration: 0.3s;
+}
+
+.project_menu_btn:hover .dot {
+  background-color: #56c2e6;
+}
+
+.project_menu {
+  background-color: #5847eb;
+  width: 120px;
+  border-radius: 10px;
+  position: absolute;
+  top: 40px;
+  right: 35px;
+  z-index: 10;
+  animation-duration: 1s;
+  transition-duration: 1s;
+}
+
+.project_menu button {
+  background: none;
+  border: none;
+  display: block;
+  border-bottom: 1px solid #ffffff;
+  color: #ffffff;
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.project_menu button:last-child {
+  border: none;
 }

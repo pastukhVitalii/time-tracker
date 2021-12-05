@@ -16,4 +16,16 @@ export class TaskService {
   getTasks(id: string | undefined): Observable<Array<ITask>> {
     return this.http.get<Array<ITask>>(`${environment.baseUrl}project/tasks/${id}`);
   }
+
+  deleteTask(taskId: string): Observable<any> {
+    return this.http.delete(`${environment.baseUrl}task/${taskId}`)
+  }
+
+  editTask(taskId: string, task_name: string): Observable<any> {
+    return this.http.put(`${environment.baseUrl}task/${taskId}`, {task_name})
+  }
+
+  createTask(projectId: string, taskName: string): Observable<any> {
+    return this.http.post(`${environment.baseUrl}tasks`, {task_name: taskName, project_id: projectId})
+  }
 }

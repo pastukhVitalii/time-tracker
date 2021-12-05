@@ -66,6 +66,10 @@ jw-modal {
   height: 24px;
   cursor: pointer;
 }
+
+.btn_yes_no button {
+  margin: 30px 10px 0;
+}
 .jw-modal-background {
   /* modal background fixed across whole screen */
   position: fixed;

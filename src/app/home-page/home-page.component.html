@@ -12,14 +12,17 @@
       <span class="arrow_down"></span>
       <span class="arrow_down">№</span>
       <div>project name</div>
-      <div>start date</div>
       <div>last update</div>
+      <div>start date</div>
       <div>time</div>
     </div>
 
     <app-project
       *ngFor="let project of projects; index as i"
       [project]="project"
+      (deleteProject)="onDeleteProject($event)"
+      (editProject)="onEditProject($event)"
+      (createTask)="onCreateTask($event)"
       [i]="i"
     ></app-project>
 
@@ -32,7 +35,7 @@
           class="input" type="text" placeholder="project name"
           [(ngModel)]="projectName">
       </div>
-        <button class="button" (click)="onAddProject('add-project-modal')">Add project</button>
+      <button class="button" (click)="onAddProject('add-project-modal')">Add project</button>
     </jw-modal>
 
   </div>
