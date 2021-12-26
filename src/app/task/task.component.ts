@@ -13,13 +13,16 @@ import {ModalService} from "../shared/services/modal.service";
 export class TaskComponent implements OnInit {
 
   taskName: string = "";
+  isPlay: boolean = false;
+  sec: number = 0;
+  minutes: number = 0;
+  hours: number = 0;
+  interval: any;
+  @Input() playTaskId: string = '';
 
   @Input() tasks: Array<ITask> = [];
   @Input() projectId: string | undefined;
   @Input() taskId: string | undefined;
-  @Output() deleteTask = new EventEmitter<string>();
-  @Output() editProject = new EventEmitter<any>();
-  @Output() createTask = new EventEmitter<any>();
 
   constructor(
     private taskService: TaskService,
@@ -78,5 +81,31 @@ export class TaskComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  toggleTimer(taskId: string) {
+    this.isPlay = !this.isPlay;
+    this.playTaskId = taskId
+    if(this.isPlay) {
+      this.startTimer()
+    } else this.pauseTimer()
+  }
+
+  startTimer() {
+    this.interval = setInterval(() => {
+      this.sec++
+      if(this.sec === 60) {
+        this.sec = 0;
+        this.minutes++
+      }
+      if(this.minutes === 60) {
+        this.minutes = 0;
+        this.hours++
+      }
+    },1000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
   }
 }

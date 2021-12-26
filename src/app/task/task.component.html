@@ -17,19 +17,37 @@
       <div>{{ t.update_date | date : 'd/M/yy h:mm' }}</div>
       <div>{{ t.create_date | date : 'd/M/yy h:mm' }}</div>
       <div class="btn_container">
-        <div class="btn_icon">
-          <button (mouseenter)="setTaskId(t.id)" (click)="openModal('delete-task-modal')"><img
-            src="assets/icon-delete.svg" alt="delete"></button>
-        </div>
+        <span *ngIf="t.id === playTaskId && isPlay; else btn_control">
+          <p *ngIf="minutes === 0 && hours === 0; else time_container">{{sec}} sec</p>
+          <ng-template #time_container>
+            <p>{{hours}}:{{minutes}}</p>
+          </ng-template>
+        </span>
+
+        <ng-template #btn_control>
+          <div class="btn_icon">
+            <button (mouseenter)="setTaskId(t.id)" (click)="openModal('delete-task-modal')">
+              <img
+                src="assets/icon-delete.svg" alt="delete">
+            </button>
+          </div>
+
+          <div class="btn_icon">
+            <button (mouseenter)="setTaskId(t.id)" (click)="openModal('edit-task-modal')">
+              <img
+                src="assets/icon-edit.svg" alt="edit">
+            </button>
+          </div>
+        </ng-template>
 
         <div class="btn_icon">
-          <button (mouseenter)="setTaskId(t.id)" (click)="openModal('edit-task-modal')"><img
-            src="assets/icon-edit.svg" alt="delete"></button>
-        </div>
-
-        <div class="btn_icon">
-          <button (mouseenter)="setTaskId(t.id)" (click)="openModal('delete-task-modal')"><img
-            src="assets/icon-clock.svg" alt="delete"></button>
+          <button (click)=" toggleTimer(t.id)">
+            <img
+              src="assets/icon-stop.svg" alt="stop play" *ngIf=" t.id === playTaskId && isPlay; else startPlay">
+            <ng-template #startPlay>
+              <img src="assets/icon-play.svg" alt="start play">
+            </ng-template>
+          </button>
         </div>
       </div>
     </div>

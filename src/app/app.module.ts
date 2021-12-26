@@ -16,6 +16,7 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {UniversalAppInterceptor} from "./shared/services/appInterceptor";
 import {UserCardComponent} from './user-card/user-card.component';
 import { ModalModule } from './modal/modal.module';
+import { TimerComponent } from './timer/timer.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ModalModule } from './modal/modal.module';
     PageNotFoundComponent,
     LoginPageComponent,
     UserCardComponent,
+    TimerComponent,
   ],
   imports: [
     BrowserModule,
