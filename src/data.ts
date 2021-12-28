@@ -31,21 +31,3 @@ export interface IUserReq {
   email: string
   password: string
 }
-
-export const projects: Array<IProject> = [
-  {
-    id: '1',
-    title: 'Halo lab',
-    addedDate: '17/01/21',
-    lastUpdate: '18/01/21',
-    workers: ["Vitaliy"],
-
-  },
-  {
-    id: '2',
-    title: 'Mav-farm',
-    addedDate: '07/09/2021',
-    lastUpdate: '08/09/2021',
-    workers: ["Vitaliy"],
-  }
-];

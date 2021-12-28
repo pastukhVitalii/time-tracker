@@ -1,5 +1,6 @@
-<div class="task_table">
+<div *ngIf="tasks.length" class="task_table">
   <h2>Tasks</h2>
+  <span>Total time: {{totalTasksTime}}</span>
   <div class="task_table_header">
     <div>№</div>
     <div>task name</div>
@@ -18,10 +19,7 @@
       <div>{{ t.create_date | date : 'd/M/yy h:mm' }}</div>
       <div class="btn_container">
         <span *ngIf="t.id === playTaskId && isPlay; else btn_control">
-          <p *ngIf="minutes === 0 && hours === 0; else time_container">{{sec}} sec</p>
-          <ng-template #time_container>
-            <p>{{hours}}:{{minutes}}</p>
-          </ng-template>
+          <p>{{time * 1000 | date : 'mm:ss'}}</p>
         </span>
 
         <ng-template #btn_control>
@@ -41,7 +39,7 @@
         </ng-template>
 
         <div class="btn_icon">
-          <button (click)=" toggleTimer(t.id)">
+          <button (click)=" toggleTimer(t)">
             <img
               src="assets/icon-stop.svg" alt="stop play" *ngIf=" t.id === playTaskId && isPlay; else startPlay">
             <ng-template #startPlay>
@@ -69,15 +67,17 @@
         <button class="btn_close" (click)="closeModal('edit-task-modal')">X</button>
         <div class="input_block">
           <label>Task name </label>
-          <input
+          <input *ngIf="taskName"
             class="input" type="text" placeholder="task name"
             [(ngModel)]="taskName">
+
+          <input *ngIf="!taskName"
+            class="input" type="text" placeholder="task name"
+            [(ngModel)]="t.task_name">
         </div>
-        <button class="button" (click)="onEditTask(taskId)">Edit task</button>
+        <button class="button" (click)="onEditTask(t)">Edit task</button>
       </jw-modal>
     </div>
-
   </div>
-
 
 </div>

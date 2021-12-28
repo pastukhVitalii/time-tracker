@@ -21,11 +21,15 @@ export class TaskService {
     return this.http.delete(`${environment.baseUrl}task/${taskId}`)
   }
 
-  editTask(taskId: string, task_name: string): Observable<any> {
-    return this.http.put(`${environment.baseUrl}task/${taskId}`, {task_name})
+  editTask(task: ITask): Observable<any> {
+    return this.http.put(`${environment.baseUrl}task/${task.id}`, {...task})
   }
 
   createTask(projectId: string, taskName: string): Observable<any> {
     return this.http.post(`${environment.baseUrl}tasks`, {task_name: taskName, project_id: projectId})
+  }
+
+  updateTaskTime(task: ITask): Observable<any> {
+    return this.http.put(`${environment.baseUrl}task/${task.id}`, {...task, time: task.time.toString()})
   }
 }

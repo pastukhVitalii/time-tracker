@@ -1,10 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
 import {IProject} from "../../data";
 import {HttpClient} from "@angular/common/http";
 import {ProjectService} from "../shared/services/project.service";
 import {ModalService} from "../shared/services/modal.service";
 import {Subscription} from "rxjs";
-import {TaskService} from "../shared/services/task.service";
 
 @Component({
   selector: 'app-project',

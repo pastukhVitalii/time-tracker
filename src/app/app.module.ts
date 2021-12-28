@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {TestComponent} from '../test/test.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {HeaderComponent} from './header/header.component';
 import {ProjectComponent} from './project/project.component';
@@ -16,12 +15,10 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {UniversalAppInterceptor} from "./shared/services/appInterceptor";
 import {UserCardComponent} from './user-card/user-card.component';
 import { ModalModule } from './modal/modal.module';
-import { TimerComponent } from './timer/timer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
     HomePageComponent,
     HeaderComponent,
     ProjectComponent,
@@ -30,7 +27,6 @@ import { TimerComponent } from './timer/timer.component';
     PageNotFoundComponent,
     LoginPageComponent,
     UserCardComponent,
-    TimerComponent,
   ],
   imports: [
     BrowserModule,

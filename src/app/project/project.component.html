@@ -1,11 +1,12 @@
 <div class="container">
   <span class="row" (click)="showTasks()">
-    <div class="arrow_down" [ngClass]="{'arrow_down_rotate' : isShowTasks}">&#8659;</div>
-    <div class="table_item_number">{{ 1 + i }}</div>
+    <div class="table_item_container">
+      <div class="arrow_down" [ngClass]="{'arrow_down_rotate' : isShowTasks}">&#8659;</div>
+      <div class="table_item_number">{{ 1 + i }}</div>
+    </div>
     <div class="table_item">{{ project?.projectname }}</div>
     <div class="table_item">{{ project?.updatedate | date : 'd/M/yy h:mm' }}</div>
     <div class="table_item">{{ project?.createdate | date : 'd/M/yy h:mm' }}</div>
-    <div class="table_item">{{ project?.time }}</div>
   </span>
 
   <div class="project_menu_btn" (click)="toggleMenu()">
