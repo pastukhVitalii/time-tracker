@@ -40,11 +40,19 @@ jw-modal {
 }
 
 .input_block {
+  display: flex;
   margin-bottom: 50px;
+  align-items: center;
+  justify-content: space-between;
+  width: 35%;
 }
 
 .input_block input{
   margin-left: 32px;
+}
+
+.input_block label {
+  display: block;
 }
 
 .input {

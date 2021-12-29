@@ -12,8 +12,8 @@ export class ProjectService {
   constructor(private http: HttpClient) {
   }
 
-  getProjects(): Observable<Array<IProject>> {
-    return this.http.get<Array<IProject>>(`${environment.baseUrl}projects`);
+  getProjects(userId: string | undefined): Observable<Array<IProject>> {
+    return this.http.get<Array<IProject>>(`${environment.baseUrl}projects/${userId}`);
   }
 
   addProject(projectName: string): Observable<IProject> {

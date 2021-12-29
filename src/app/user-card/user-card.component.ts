@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../shared/services/auth.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {LocalStorageService} from "../shared/services/localStorage.service";
 import {Router} from "@angular/router";
+import {IUserRes} from "../../data";
 
 @Component({
   selector: 'app-user-card',
@@ -8,28 +9,21 @@ import {Router} from "@angular/router";
   styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent implements OnInit {
-  name: string | undefined
 
-  isAuth = false
+  @Input() user: IUserRes | null = null;
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private LocalStorageService: LocalStorageService,
   ) {
   }
 
   ngOnInit(): void {
-    this.authService.me()
-      .subscribe((res) => {
-        if (res.id) {
-          this.name = res.email;
-          this.isAuth = true
-          this.router.navigate(['/']);
-        } else {
-          this.router.navigate(['/login']);
-          console.error(res);
-        }
-      });
+  }
+
+  onLogout() {
+    this.router.navigate(['/login'])
+    this.LocalStorageService.remove('t')
   }
 
 }

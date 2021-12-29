@@ -20,9 +20,9 @@
   </div>
 
   <div class="project_menu" *ngIf="isProjectMenu">
-    <button (click)="openModal('delete-project-modal') ">delete</button>
-    <button (click)="openModal('edit-project-modal')">update</button>
     <button (click)="openModal('create-task-modal')">create task</button>
+    <button (click)="openModal('edit-project-modal')">update</button>
+    <button (click)="openModal('delete-project-modal') ">delete</button>
   </div>
 
   <div *ngIf="project?.id === projectId">

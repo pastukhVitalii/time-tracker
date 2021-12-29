@@ -33,6 +33,7 @@
 .btn_container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .btn_icon {

@@ -1,5 +1,5 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
-import {IProject} from "../../data";
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
+import {IProject, IUserRes} from "../../data";
 import {HttpClient} from "@angular/common/http";
 import {ProjectService} from "../shared/services/project.service";
 import {ModalService} from "../shared/services/modal.service";
@@ -61,6 +61,7 @@ export class ProjectComponent implements OnInit {
 
   createTaskHandler(props: any) {
     this.createTask.emit({...props, taskName: this.taskName});
+    this.taskName = '';
   }
 
   openModal(id: string) {

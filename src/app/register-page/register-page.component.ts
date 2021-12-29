@@ -30,8 +30,6 @@ export class RegisterPageComponent implements OnInit {
     this.registerService.getAdmins()
       .subscribe((res: any) => {
           this.admins = res;
-          console.log("-> this.admins", this.admins);
-
         }
       );
   }
@@ -41,6 +39,7 @@ export class RegisterPageComponent implements OnInit {
       Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,8}$')
     ]),
     password: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    name: new FormControl('', [Validators.required]),
   });
 
   onSubmit() {

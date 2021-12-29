@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ITask} from 'src/data';
 import {TaskService} from "../shared/services/task.service";
 import {HttpClient} from "@angular/common/http";
@@ -21,7 +21,6 @@ export class TaskComponent implements OnInit {
 
   @Input() tasks: Array<ITask> = [];
   @Input() projectId: string | undefined;
-  @Input() taskId: string = "";
 
   constructor(
     private taskService: TaskService,
@@ -45,7 +44,7 @@ export class TaskComponent implements OnInit {
     this.taskService.deleteTask(taskId)
       .subscribe((res: { deleted: boolean }) => {
           if (res.deleted) {
-            this.closeModal('delete-task-modal')
+            this.closeModal('delete-task-modal-' + taskId)
             this.tasks = this.tasks.filter((p) => {
               return p.id !== taskId;
             });
@@ -57,7 +56,7 @@ export class TaskComponent implements OnInit {
   }
 
   onEditTask(task: ITask) {
-    this.taskService.editTask({...task, task_name: this.taskName})
+    this.taskService.editTask({...task, task_name: this.taskName, time: +this.time + +task.time * 60})
       .subscribe((res: { updated: boolean, task: ITask }) => {
           if (res.updated) {
             const index = this.tasks.findIndex(i => i.id === res.task.id);
@@ -67,6 +66,8 @@ export class TaskComponent implements OnInit {
         (err) => {
           console.error(err.error.message);
         })
+    this.taskName = '';
+    this.time = 0;
   }
 
   onUpdateTime(task: ITask) {
@@ -83,10 +84,8 @@ export class TaskComponent implements OnInit {
         (err) => {
           console.error(err.error.message);
         })
-  }
-
-  setTaskId(taskId: string) {
-    this.taskId = taskId;
+    this.taskName = '';
+    this.time = 0;
   }
 
   openModal(id: string) {

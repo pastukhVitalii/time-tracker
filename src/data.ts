@@ -22,12 +22,14 @@ export interface IProject {
 }
 
 export interface IUserRes {
-  id: string
+  id: string | undefined
   email: string
   password?: string
+  name: string
 }
 
 export interface IUserReq {
   email: string
   password: string
+  name: string
 }

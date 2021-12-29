@@ -24,6 +24,15 @@
       </p>
     </div>
 
+    <div>
+      <input id="name" type="text" formControlName="name" placeholder="Name"
+             [ngClass]="{'form-control-error': registerForm?.get('name')?.touched && registerForm?.get('name')?.invalid}">
+      <p class="error-message"
+         *ngIf="registerForm?.get('name')?.invalid &&  registerForm?.get('name')?.touched">
+        Name is required
+      </p>
+    </div>
+
     <p>Complete the form to enable button.</p>
     <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
     <button type="submit" [disabled]="!registerForm.valid" [ngClass]="{'disable_button': !registerForm.valid}">Submit

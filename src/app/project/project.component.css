@@ -15,6 +15,10 @@
   width: 100%;
 }
 
+.row:hover div.table_item {
+  text-decoration: underline;
+}
+
 .table_item_container {
   display: flex;
   justify-content: space-between;
