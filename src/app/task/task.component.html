@@ -1,6 +1,13 @@
 <div *ngIf="tasks.length" class="task_table">
   <h2>Tasks</h2>
-  <span>Total time: {{totalTasksTime * 1000 | date : 'mm:ss'}}</span>
+  <span>
+    Total time:
+    <span>
+      <span *ngIf="+(totalTasksTime / 60 / 60).toFixed() < 10">0</span>
+        <span>{{(totalTasksTime / 60 / 60).toFixed()}}</span>
+        <span class="colon">:</span>
+      {{totalTasksTime * 1000 | date : 'mm:ss'}}</span>
+  </span>
   <div class="task_table_header">
     <div>№</div>
     <div>task name</div>
@@ -14,7 +21,12 @@
     <div class="row">
       <div>{{ i + 1}}</div>
       <div>{{ t.task_name}}</div>
-      <div>{{ t.time}}</div>
+      <div>
+        <span *ngIf="+(t.time / 60 / 60).toFixed() < 10">0</span>
+        <span>{{(t.time / 60 / 60).toFixed()}}</span>
+        <span class="colon">:</span>
+        {{t.time * 1000 | date : 'mm:ss'}}
+      </div>
       <div>{{ t.update_date | date : 'd/M/yy h:mm' }}</div>
       <div>{{ t.create_date | date : 'd/M/yy h:mm' }}</div>
       <div class="btn_container">
@@ -72,12 +84,17 @@
           [(ngModel)]="taskName">
       </div>
       <div class="input_block">
-        <label>Add time manually, minutes</label>
+        <label>Add time manually</label>
         <input
-          class="input"
-          type="text"
-          pattern="[0-9]*"
-          [(ngModel)]="time">
+          class="input input_number"
+          type="number"
+          [(ngModel)]="hours">
+        hours
+        <input
+          class="input input_number"
+          type="number"
+          [(ngModel)]="minutes">
+        minutes
       </div>
       <button class="button" (click)="onEditTask(t)">Edit task</button>
     </jw-modal>

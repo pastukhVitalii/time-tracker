@@ -40,19 +40,11 @@ jw-modal {
 }
 
 .input_block {
-  display: flex;
   margin-bottom: 50px;
-  align-items: center;
-  justify-content: space-between;
-  width: 35%;
 }
 
 .input_block input{
   margin-left: 32px;
-}
-
-.input_block label {
-  display: block;
 }
 
 .input {
@@ -62,6 +54,10 @@ jw-modal {
 
 .input::placeholder {
   text-transform: capitalize;
+}
+
+.input_number {
+  width: 50px;
 }
 
 .btn_close {

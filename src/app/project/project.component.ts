@@ -59,9 +59,10 @@ export class ProjectComponent implements OnInit {
     this.editProject.emit({...props, projectName: this.projectName});
   }
 
-  createTaskHandler(props: any) {
-    this.createTask.emit({...props, taskName: this.taskName});
+  createTaskHandler() {
+    this.createTask.emit({projectId: this.projectId, taskName: this.taskName});
     this.taskName = '';
+    this.projectId = '';
   }
 
   openModal(id: string) {

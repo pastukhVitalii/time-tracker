@@ -16,6 +16,8 @@ export class TaskComponent implements OnInit {
   isPlay: boolean = false;
   totalTasksTime: number = 0;
   time: number = 0;
+  minutes: number | null = null;
+  hours: number | null = null;
   interval: any;
   @Input() playTaskId: string = '';
 
@@ -56,7 +58,12 @@ export class TaskComponent implements OnInit {
   }
 
   onEditTask(task: ITask) {
-    this.taskService.editTask({...task, task_name: this.taskName, time: +this.time + +task.time * 60})
+    this.taskService.editTask({
+      ...task,
+      task_name: this.taskName,
+      // @ts-ignore
+      time: +this.hours * 3600 + +this.minutes * 60 + +task.time
+    })
       .subscribe((res: { updated: boolean, task: ITask }) => {
           if (res.updated) {
             const index = this.tasks.findIndex(i => i.id === res.task.id);
