@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://trackertime.herokuapp.com/api/',
+  baseUrl: 'http://127.0.0.1:5000/api/',
 };
 
 /*

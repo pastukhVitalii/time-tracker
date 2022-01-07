@@ -36,7 +36,7 @@ export class HomePageComponent {
   }
 
   ngOnInit(): void {
-      this.authService.me()
+    this.authService.me()
       .subscribe((res) => {
         if (res.id) {
           this.user = res;
@@ -65,6 +65,7 @@ export class HomePageComponent {
         (err) => {
           console.error(err.error.text);
         })
+    this.projectName = ''
   }
 
   openModal(id: string) {

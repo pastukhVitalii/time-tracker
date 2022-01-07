@@ -5,6 +5,7 @@ import {AuthService} from "../shared/services/auth.service";
 import {IUserRes} from "../../data";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {LocalStorageService} from "../shared/services/localStorage.service";
 
 @Component({
   selector: 'app-register',
@@ -22,16 +23,12 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private registerService: AuthService,
-    private router: Router
+    private router: Router,
+  private localStorageService: LocalStorageService,
   ) {
   }
 
   ngOnInit(): void {
-    this.registerService.getAdmins()
-      .subscribe((res: any) => {
-          this.admins = res;
-        }
-      );
   }
 
   registerForm = new FormGroup({
@@ -46,12 +43,13 @@ export class RegisterPageComponent implements OnInit {
     this.registerService.register(this.registerForm.value)
       .subscribe((res: IUserRes) => {
           if (res.id) {
+            this.localStorageService.set('t', res.token)
             this.router.navigate(['/']);
-            this.registerForm.reset()
-          } else console.log(res)
+            this.registerForm.reset();
+          } else console.log(res);
         },
         (err) => {
-          this.errorMessage = err.error.text
+          this.errorMessage = err.error.text;
           console.error(err.error.text);
         })
   }

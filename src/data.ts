@@ -26,6 +26,7 @@ export interface IUserRes {
   email: string
   password?: string
   name: string
+  token: string
 }
 
 export interface IUserReq {
