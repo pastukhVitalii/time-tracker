@@ -35,7 +35,7 @@ export class LoginPageComponent {
 
   onSubmit() {
     this.registerService.login(this.loginForm.value)
-      .subscribe((res: any) => {
+      .subscribe((res: {token: string}) => {
           if (res) {
             this.localStorageService.set('t', res.token)
             this.router.navigate(['/']);

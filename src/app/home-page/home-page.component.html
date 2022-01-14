@@ -8,21 +8,27 @@
         <button class="button" (click)="openModal('add-project-modal')">new project</button>
       </div>
     </div>
-    <div class="table_header">
-      <span class="arrow_down">№</span>
-      <div>project name</div>
-      <div>last update</div>
-      <div>start date</div>
+    <div *ngIf="projects.length; else empty">
+      <div class="table_header">
+        <span class="arrow_down">№</span>
+        <div>project name</div>
+        <div>last update</div>
+        <div>start date</div>
+      </div>
+
+      <app-project
+        *ngFor="let project of projects; index as i"
+        [project]="project"
+        (deleteProject)="onDeleteProject($event)"
+        (editProject)="onEditProject($event)"
+        (createTask)="onCreateTask($event)"
+        [i]="i"
+      ></app-project>
     </div>
 
-    <app-project
-      *ngFor="let project of projects; index as i"
-      [project]="project"
-      (deleteProject)="onDeleteProject($event)"
-      (editProject)="onEditProject($event)"
-      (createTask)="onCreateTask($event)"
-      [i]="i"
-    ></app-project>
+    <ng-template #empty>
+      <div>No projects yet</div>
+    </ng-template>
 
     <jw-modal id="add-project-modal">
       <h3 class="title">Create new project</h3>
@@ -30,8 +36,11 @@
       <div class="input_block">
         <label>Project name </label>
         <input
-          class="input" type="text" placeholder="project name"
-          [(ngModel)]="projectName">
+          class="input"
+          type="text"
+          placeholder="project name"
+          [(ngModel)]="projectName"
+          (keyup.enter)="onAddProject('add-project-modal')">
       </div>
       <button class="button" (click)="onAddProject('add-project-modal')">Add project</button>
     </jw-modal>

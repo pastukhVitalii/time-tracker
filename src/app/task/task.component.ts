@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ITask} from 'src/data';
 import {TaskService} from "../shared/services/task.service";
 import {HttpClient} from "@angular/common/http";
@@ -15,14 +15,15 @@ export class TaskComponent implements OnInit {
   taskName: string = "";
   isPlay: boolean = false;
   totalTasksTime: number = 0;
-  time: number = 0;
-  minutes: number | null = null;
-  hours: number | null = null;
-  interval: any;
+  sec: number = 0;
+  minutes: number = 0;
+  hours: number = 0;
+  interval: number = 0;
   @Input() playTaskId: string = '';
 
   @Input() tasks: Array<ITask> = [];
   @Input() projectId: string | undefined;
+  @Output() isTracking = new EventEmitter<any>();
 
   constructor(
     private taskService: TaskService,
@@ -74,11 +75,13 @@ export class TaskComponent implements OnInit {
           console.error(err.error.message);
         })
     this.taskName = '';
-    this.time = 0;
+    this.sec = 0;
+    this.minutes = 0;
+    this.hours = 0;
   }
 
   onUpdateTime(task: ITask) {
-    this.taskService.updateTaskTime({...task, time: +this.time + +task.time})
+    this.taskService.updateTaskTime({...task, time: +this.hours * 3600 + +this.minutes * 60 + this.sec + +task.time})
       .subscribe((res: { updated: boolean }) => {
           if (res.updated) {
             this.taskService.getTasks(this.projectId)
@@ -92,7 +95,9 @@ export class TaskComponent implements OnInit {
           console.error(err.error.message);
         })
     this.taskName = '';
-    this.time = 0;
+    this.sec = 0;
+    this.minutes = 0;
+    this.hours = 0;
   }
 
   openModal(id: string) {
@@ -113,13 +118,27 @@ export class TaskComponent implements OnInit {
 
   startTimer() {
     this.interval = setInterval(() => {
-      this.time++
+      this.sec++
+      if (this.sec === 60) {
+        this.sec = 0;
+        this.minutes++
+      }
+      if (this.minutes === 60) {
+        this.minutes = 0;
+        this.hours++
+      }
     }, 1000)
   }
 
   pauseTimer(task: ITask) {
     this.onUpdateTime(task);
     clearInterval(this.interval);
-    this.time = 0;
+    this.sec = 0;
+    this.minutes = 0;
+    this.hours = 0;
+  }
+
+  isTrackingHandler(isPlay: boolean) {
+    this.isTracking.emit(isPlay);
   }
 }

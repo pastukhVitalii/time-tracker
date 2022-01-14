@@ -30,13 +30,17 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
+.active img {
+  cursor: not-allowed;
+}
+
 .colon {
   position: absolute;
 }
 
 .btn_container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 

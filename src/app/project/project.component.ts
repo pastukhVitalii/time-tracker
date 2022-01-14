@@ -1,9 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
-import {IProject, IUserRes} from "../../data";
+import {IProject} from "../../data";
 import {HttpClient} from "@angular/common/http";
 import {ProjectService} from "../shared/services/project.service";
 import {ModalService} from "../shared/services/modal.service";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-project',
@@ -18,10 +17,11 @@ export class ProjectComponent implements OnInit {
   isProjectMenu: boolean = false;
   projectName: string = "";
   taskName: string = "";
+  delay: number = 0;
+  isPlay: boolean = false;
 
   @ViewChild('modal', {read: ViewContainerRef})
   entry!: ViewContainerRef;
-  sub!: Subscription;
 
   @Input() project: IProject | undefined;
   @Input() i = 1;
@@ -40,22 +40,31 @@ export class ProjectComponent implements OnInit {
   }
 
   showTasks() {
-    this.isShowTasks = !this.isShowTasks;
-    this.projectId = this.project?.id;
-    this.isProjectMenu = false;
+    if(!this.isPlay) {
+      this.isShowTasks = !this.isShowTasks;
+      this.projectId = this.project?.id;
+      this.isProjectMenu = false;
+    }
   }
 
-  toggleMenu() {
-    this.isProjectMenu = !this.isProjectMenu
-    this.isShowTasks = false;
+  openMenu() {
+    this.delay = setTimeout(() => {
+      this.isProjectMenu = true;
+      this.projectId = this.project?.id;
+    }, 300)
+  }
+
+  closeMenu() {
+    this.isProjectMenu = false;
     this.projectId = this.project?.id;
+    clearInterval(this.delay)
   }
 
   deleteProjectHandler(id: string | undefined) {
     this.deleteProject.emit(id);
   }
 
-  updateProjectHandler(props: any) {
+  updateProjectHandler(props: {projectId: string}) {
     this.editProject.emit({...props, projectName: this.projectName});
   }
 
@@ -63,6 +72,8 @@ export class ProjectComponent implements OnInit {
     this.createTask.emit({projectId: this.projectId, taskName: this.taskName});
     this.taskName = '';
     this.projectId = '';
+    this.isProjectMenu = false;
+    this.isShowTasks = false;
   }
 
   openModal(id: string) {
@@ -73,5 +84,8 @@ export class ProjectComponent implements OnInit {
     this.modalService.close(id);
   }
 
+  isTracking(isPlay: boolean) {
+    this.isPlay = isPlay;
+  }
 }
 

@@ -29,9 +29,12 @@
       </div>
       <div>{{ t.update_date | date : 'd/M/yy h:mm' }}</div>
       <div>{{ t.create_date | date : 'd/M/yy h:mm' }}</div>
-      <div class="btn_container">
+
+      <div class="btn_container" [class.active]="t.id !== playTaskId && isPlay">
         <span *ngIf="t.id === playTaskId && isPlay; else btn_control">
-          <p>{{time * 1000 | date : 'mm:ss'}}</p>
+          <span *ngIf="hours < 10">0</span><span>{{hours}}:</span>
+          <span *ngIf="minutes < 10">0</span><span>{{minutes}}:</span>
+          <span *ngIf="sec < 10">0</span><span>{{sec}}</span>
         </span>
 
         <ng-template #btn_control>
@@ -51,9 +54,10 @@
         </ng-template>
 
         <div class="btn_icon">
-          <button (click)=" toggleTimer(t)">
+          <button (click)=" toggleTimer(t); isTrackingHandler(isPlay)" [disabled]="t.id !== playTaskId && isPlay">
             <img
-              src="assets/icon-stop.svg" alt="stop play" *ngIf=" t.id === playTaskId && isPlay; else startPlay">
+              src="assets/icon-stop.svg" alt="stop play"
+              *ngIf=" t.id === playTaskId && isPlay; else startPlay">
             <ng-template #startPlay>
               <img src="assets/icon-play.svg" alt="start play">
             </ng-template>
@@ -81,6 +85,7 @@
           class="input"
           type="text"
           placeholder="task name"
+          (keyup.enter)="onEditTask(t)"
           [(ngModel)]="taskName">
       </div>
       <div class="input_block">
@@ -88,12 +93,16 @@
         <input
           class="input input_number"
           type="number"
-          [(ngModel)]="hours">
+          min="0"
+          [(ngModel)]="hours"
+          (keyup.enter)="onEditTask(t)">
         hours
         <input
           class="input input_number"
           type="number"
-          [(ngModel)]="minutes">
+          min="0"
+          [(ngModel)]="minutes"
+          (keyup.enter)="onEditTask(t)">
         minutes
       </div>
       <button class="button" (click)="onEditTask(t)">Edit task</button>

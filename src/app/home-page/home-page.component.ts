@@ -80,7 +80,7 @@ export class HomePageComponent {
     this.projectService.deleteProject(id)
       .subscribe((res: { deleted: boolean }) => {
           if (res.deleted) {
-            this.closeModal('delete-project-modal')
+            this.closeModal('delete-project-modal-' + id)
             this.projects = this.projects.filter((p) => {
               return p.id !== id;
             });
@@ -91,8 +91,11 @@ export class HomePageComponent {
         })
   }
 
-  onEditProject(props: any) {
-    console.log("-> props", props);
+  onEditProject(props: {
+    projectId: string
+    projectName: string
+  }) {
+
     this.projectService.updateProject(props.projectId, props.projectName)
       .subscribe((res: { updated: boolean }) => {
           if (res.updated) {
@@ -100,7 +103,7 @@ export class HomePageComponent {
               .subscribe((res: Array<IProject>) => {
                 this.projects = res;
               });
-            this.closeModal('edit-project-modal')
+            this.closeModal('edit-project-modal-' + props.projectId)
           }
         },
         (err) => {
@@ -108,10 +111,13 @@ export class HomePageComponent {
         })
   }
 
-  onCreateTask(props: any) {
+  onCreateTask(props: {
+    projectId: string
+    taskName: string
+  }) {
     this.taskService.createTask(props.projectId, props.taskName)
       .subscribe((res: { updated: boolean }) => {
-          this.closeModal('create-task-modal')
+          this.closeModal('create-task-modal-' + props.projectId)
         },
         (err) => {
           console.error(err.error.message);

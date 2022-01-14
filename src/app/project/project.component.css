@@ -22,6 +22,7 @@
 .table_item_container {
   display: flex;
   justify-content: space-between;
+  width: 5%;
 }
 
 .table_header_number,
@@ -38,6 +39,8 @@
 .arrow_down {
   display: flex;
   justify-content: center;
+  position: absolute;
+  left: 10px;
 }
 
 .arrow_down_rotate {
@@ -72,11 +75,12 @@
   width: 120px;
   border-radius: 10px;
   position: absolute;
-  top: 50px;
-  right: 35px;
+  top: 45px;
+  right: 25px;
   z-index: 10;
   animation-duration: 1s;
   transition-duration: 1s;
+  border: 1px solid #ffffff;
 }
 
 .project_menu button {

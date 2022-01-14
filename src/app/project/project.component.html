@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (mouseleave)="closeMenu()">
   <span class="row" (click)="showTasks()">
     <div class="table_item_container">
       <div class="arrow_down" [ngClass]="{'arrow_down_rotate' : isShowTasks}">&#8659;</div>
@@ -9,59 +9,64 @@
     <div class="table_item">{{ project?.createdate | date : 'd/M/yy h:mm' }}</div>
   </span>
 
-  <div class="project_menu_btn" (click)="toggleMenu()">
+  <div class="project_menu_btn" (mouseenter)="openMenu()">
     <div class="dot"></div>
     <div class="dot"></div>
     <div class="dot"></div>
   </div>
 
   <div *ngIf="isShowTasks">
-    <app-tasks [projectId]="projectId"></app-tasks>
+    <app-tasks [projectId]="projectId" (isTracking)="isTracking($event)"></app-tasks>
   </div>
 
-  <div class="project_menu" *ngIf="isProjectMenu">
-    <button (click)="openModal('create-task-modal')">create task</button>
-    <button (click)="openModal('edit-project-modal')">update</button>
-    <button (click)="openModal('delete-project-modal') ">delete</button>
+  <div class="project_menu" *ngIf="isProjectMenu" (mouseleave)="closeMenu()">
+    <button (click)="openModal('create-task-modal-' + project?.id)">create task</button>
+    <button (click)="openModal('edit-project-modal-' + project?.id)">update</button>
+    <button (click)="openModal('delete-project-modal-' + project?.id) ">delete</button>
   </div>
 
   <div *ngIf="project?.id === projectId">
-    <jw-modal id='delete-project-modal'>
+    <jw-modal id='delete-project-modal-{{project?.id}}'>
       <h3 class="title">Are you sure want to delete the project?</h3>
-      <button class="btn_close" (click)="closeModal('delete-project-modal')">X</button>
+      <button class="btn_close" (click)="closeModal('delete-project-modal-'+ project?.id)">X</button>
       <div class="btn_yes_no">
-        <button class="button" (click)="closeModal('delete-project-modal') ">No</button>
+        <button class="button" (click)="closeModal('delete-project-modal-'+ project?.id) ">No</button>
         <button class="button" (click)="deleteProjectHandler(project?.id || 'id')">Yes</button>
       </div>
     </jw-modal>
   </div>
 
   <div *ngIf="project?.id === projectId">
-    <jw-modal id='edit-project-modal'>
+    <jw-modal id='edit-project-modal-{{project?.id}}'>
       <h3 class="title">Edit your project</h3>
-      <button class="btn_close" (click)="closeModal('edit-project-modal')">X</button>
+      <button class="btn_close" (click)="closeModal('edit-project-modal-'+ project?.id)">X</button>
       <div class="input_block">
         <label>Project name </label>
         <input
-          class="input" type="text" placeholder="project name"
-          [(ngModel)]="projectName">
+          class="input"
+          type="text"
+          placeholder="project name"
+          [(ngModel)]="projectName"
+          (keyup.enter)="updateProjectHandler({projectId: project?.id || 'id'})">
       </div>
       <button class="button" (click)="updateProjectHandler({projectId: project?.id || 'id'})">Edit project</button>
     </jw-modal>
   </div>
 
   <div *ngIf="project?.id === projectId">
-    <jw-modal id='create-task-modal'>
+    <jw-modal id='create-task-modal-{{project?.id}}'>
       <h3 class="title">Create new task</h3>
-      <button class="btn_close" (click)="closeModal('create-task-modal')">X</button>
+      <button class="btn_close" (click)="closeModal('create-task-modal-'+ project?.id)">X</button>
       <div class="input_block">
         <label>Create task</label>
         <input
-          class="input" type="text" placeholder="task name"
-          [(ngModel)]="taskName">
+          class="input"
+          type="text"
+          placeholder="task name"
+          [(ngModel)]="taskName"
+          (keyup.enter)="createTaskHandler()">
       </div>
       <button class="button" (click)="createTaskHandler()">Create task</button>
     </jw-modal>
   </div>
-
 </div>

@@ -23,6 +23,6 @@ export class ModalService {
   close(id: string) {
     // close modal specified by id
     const modal = this.modals.find(x => x.id === id);
-    modal.close();
+    modal?.close();
   }
 }

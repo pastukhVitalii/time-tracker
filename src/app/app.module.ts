@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {HomePageComponent} from './home-page/home-page.component';
-import {HeaderComponent} from './header/header.component';
 import {ProjectComponent} from './project/project.component';
 import {TaskComponent} from './task/task.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
@@ -14,13 +13,12 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {LoginPageComponent} from './login-page/login-page.component';
 import {UniversalAppInterceptor} from "./shared/services/appInterceptor";
 import {UserCardComponent} from './user-card/user-card.component';
-import { ModalModule } from './modal/modal.module';
+import {ModalModule} from './modal/modal.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    HeaderComponent,
     ProjectComponent,
     TaskComponent,
     RegisterPageComponent,
